@@ -88,7 +88,7 @@ def play2():
 """)
 
 # check if someone won
-def winCheck():
+def winCheck(name):
     # check for vertical wins
     for i in das:
         for j in range(3):
@@ -96,7 +96,7 @@ def winCheck():
                 pass
             else:
                 if i[j]==i[j+1]==i[j+2]==i[j+3]:
-                    print('You have won!!!')
+                    print(f'{name} wins!!!')
                     sys.exit('Game Over')
 
     # check for horizontal wins
@@ -109,11 +109,30 @@ def winCheck():
                 pass
             else:
                 if w[p] == w[p + 1] == w[p + 2] == w[p + 3]:
-                    print('You have won!!!')
+                    print(f'{name} wins!!!')
                     sys.exit('Game Over')
 
     # check for diagonal wins
+    d1 = [c1[2], c2[3], c3[4], c4[5]]
+    d2 = [c1[1], c2[2], c3[3], c4[4], c5[5]]
+    d3 = [c1[0], c2[1], c3[2], c4[3], c5[4], c6[5]]
+    d4 = [c2[0], c3[1], c4[2], c5[3], c6[4], c7[5]]
+    d5 = [c3[0], c4[1], c5[2], c6[3], c7[4]]
+    d6 = [c4[0], c5[1], c6[2], c7[3]]
+    d7 = [c1[2], c2[3], c3[4], c4[5]]
+    d8 = [c1[1], c2[2], c3[3], c4[4], c5[5]]
+    d9 = [c1[0], c2[1], c3[2], c4[3], c5[4], c6[5]]
+    d10 = [c2[0], c3[1], c4[2], c5[3], c6[4], c7[5]]
+    d11 = [c3[0], c4[1], c5[2], c6[3], c7[4]]
+    d12 = [c4[0], c5[1], c6[2], c7[3]]
+    v = [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12]
 
+    for i in v:
+        for j in range(len(i)-3):
+            if i[j] != '   ':
+                if i[j] == i[j + 1] == i[j + 2] == i[j + 3]:
+                    print(f'{name} wins!!!')
+                    sys.exit('Game Over')
 
 
 # connect four virtual board
@@ -144,7 +163,7 @@ while(True):
     ite += 1
     if ite % 2 == 1:
         play1()
-        winCheck()
+        winCheck(name1)
     else:
         play2()
-        winCheck()
+        winCheck(name2)
